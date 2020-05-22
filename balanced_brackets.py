@@ -10,7 +10,7 @@ def isBalanced(str):
         elif i in close_brackets: 
             if (len(stack) > 0): 
                 top_element = stack.pop()
-                if top_element != bracket_pairs[I]:
+                if top_element != bracket_pairs[i]:
                     return "Unbalanced String."
             else: 
                 return "Unbalanced String"
