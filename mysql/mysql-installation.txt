@@ -1,0 +1,37 @@
+yum install wget -y
+
+wget https://dev.mysql.com/get/mysql80-community-release-el8-1.noarch.rpm
+
+md5sum mysql80-community-release-el8-1.noarch.rpm
+
+First, add the MySQL Yum repository to your system's repository list. 
+This is a one-time operation, which can be performed by installing an RPM provided by MySQL. Follow these steps:
+
+rpm -ivh mysql80-community-release-el8-1.noarch.rpm
+
+https://dev.mysql.com/doc/refman/8.0/en/linux-installation-yum-repo.html
+(EL8 systems only) EL8-based systems such as RHEL8 and
+ Oracle Linux 8 include a MySQL module that is enabled by default. 
+Unless this module is disabled, it masks packages provided by MySQL repositories
+
+yum module disable mysql
+
+yum install mysql-community-server
+
+systemctl start mysqld
+
+systemctl status mysqld
+
+ps -ef | grep mysql
+
+cat /var/log/mysqld.log|grep temp
+
+mysql -u root -p mysql
+
+mysqladmin -u root -p password
+
+mysql -u root -p mysql
+
+select * from mysql.time_zone;
+
+mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -u root -p mysql
