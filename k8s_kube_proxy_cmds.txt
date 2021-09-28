@@ -1,0 +1,25 @@
+kubectl get pods -l k8s-app=kube-proxy -n kube-system -o wide
+
+kubectl get deploy -o wide
+
+kubectl create deploy hello-world --image=nginx --replicas=3
+
+kubectl get deploy -o wide
+
+kubectl get pods -o wide
+
+kubectl get svc
+
+kubectl get svc kubernetes
+
+kubectl describe svc kubernetes
+
+kubectl cluster-info
+
+kubectl expose deploy/hello-world --port 8080 --target-port 80 --type NodePort
+
+kubectl describe svc hello-world
+
+kubectl get endpoints
+
+iptables -L KUBE-NODEPORTS -t nat
