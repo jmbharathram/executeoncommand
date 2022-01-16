@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    env: qa
+  name: my-application
+spec:
+  containers:
+  - image: busybox
+    name: myapp-container
+    command: ['sh', '-c', 'echo The app is running! && sleep 3600']
+  initContainers:
+  - image: python:3.8-slim
+    name: init-database
+    command: ['sh', '-c', 'pip install mysql-connector-python && until python /tmp/mysql-program.py; do echo waiting for db initialization; sleep 2; done']
+    volumeMounts:
+       - name: mysqlprogram
+         mountPath: /tmp
+  volumes:
+      - name: mysqlprogram
+        configMap:
+           name: mysql-program
+           items:
+           - key: mysql-program.py
+             path: mysql-program.py
