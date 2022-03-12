@@ -1,0 +1,31 @@
+kubectl get nodes
+
+kubectl cordon node1
+
+kubectl get nodes
+
+kubectl run test-pod --image=busybox -- sleep 300
+
+kubectl uncordon node1
+
+kubectl run test-pod2 --image=busybox -- sleep 300
+
+kubectl create deploy some-deployment --image=busybox --replicas=2 -- sleep 300
+
+kubectl create deploy test-deploy --image=busybox --replicas=5 -- sleep 300
+
+kubectl get pod -o wide
+
+kubectl drain node2
+
+kubectl drain node2 --ignore-daemonsets
+
+kubectl get node node2
+NAME    STATUS                     ROLES    AGE    VERSION
+node2   Ready,SchedulingDisabled   <none>   180d   v1.20.5
+
+kubectl uncordon node2
+
+kubectl rollout restart deployment/test-deploy
+
+kubectl delete deploy test-deploy
