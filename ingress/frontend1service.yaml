@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: "2023-05-08T05:27:42Z"
+  labels:
+    app: frontend1
+  name: frontend1service
+  namespace: default
+  resourceVersion: "72053"
+  uid: 87a6fd6c-3896-4a66-8db0-5ea70fbb8953
+spec:
+  clusterIP: 10.100.57.211
+  clusterIPs:
+  - 10.100.57.211
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: frontend1
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}

@@ -1,0 +1,28 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-rules
+  namespace: default
+spec:
+  ingressClassName: nginx-class
+  rules:
+    - host: httpd.executeoncommand.click
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: frontend1service
+                port:
+                  number: 80
+    - host: nginx.executeoncommand.click
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: frontend2service
+                port:
+                  number: 80
